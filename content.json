@@ -1,0 +1,23 @@
+{
+  "video_banner": "uploads/lentes.mp4",
+
+  "hero": "<h2>BAJO CONSTRUCCIÓN</h2><p>Somos un laboratorio de manufactura de lentes oftálmicos que combina la tecnología ZEISS y tecnología de calidad de clase mundial para ofrecer soluciones visuales premium, diseñadas para profesionales que quieren brindar lo mejor a sus pacientes. Más que un laboratorio, somos tu socio estratégico: te ofrecemos acceso a la tecnología de precisión ZEISS a través de nuestra colección Signature y a procesos de control de calidad en cada lente que manufacturamos. Te apoyamos con un equipo de servicio al cliente experimentado y cercano. Te brindamos programas de capacitación profesional para mantenerte actualizado con las últimas innovaciones de la industria óptica. Tu éxito es nuestra misión. Trabajamos contigo para fortalecer tu marca, hacer crecer tu práctica y brindarte el respaldo necesario para ofrecer a tus pacientes una experiencia visual de clase mundial, fabricada con orgullo aquí en Puerto Rico.</p>",
+
+  "about": "<h3>Sobre Nosotros</h3><p>Somos una fábrica especializada en lentes oftálmicos. Creemos que la visión merece un estándar superior. No somos simplemente un laboratorio, somos un socio estratégico para los profesionales de la salud visual que buscan ofrecer lo mejor a sus pacientes. Nuestra misión es brindar soluciones visuales de calidad, con tecnología avanzada y materiales de precisión ZEISS, garantizando excelencia y confianza en cada lente que fabricamos.</p>",
+
+  "about_image": "uploads/481251331_609896978582088_5915693758980371430_n.jpg",
+
+  "lentes_simple": "Diseñados para ofrecer visión nítida en una sola distancia. Ideales para uso diario, brindando confort visual y precisión óptica con la garantía ZEISS.",
+
+  "lentes_progresivos": "Combinan visión de lejos, media y cerca sin líneas divisorias. Personalizados para adaptarse al estilo de vida de cada usuario con la más avanzada tecnología ZEISS.",
+
+  "lentes_oficina": "Perfectos para profesionales que pasan largas horas frente a pantallas. Reducen la fatiga ocular y optimizan el rendimiento visual en espacios interiores.",
+
+  "lentes_activos": "Pensados para estilos de vida dinámicos. Protección UV total, materiales ultralivianos y resistencia a impactos con la calidad óptica que distingue a ZEISS.",
+
+  "redes": {
+    "facebook": "https://www.facebook.com/momvisionpr",
+    "instagram": "https://www.instagram.com/momvisionpr",
+    "whatsapp": "https://wa.me/17872345678"
+  }
+}

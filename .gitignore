@@ -1,0 +1,63 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Archivos de configuración sensibles
+.env
+config.json
+config.php
+
+# Uploads (mantener solo estructura)
+uploads/*
+!uploads/.gitkeep
+!uploads/samples/
+uploads/samples/*
+!uploads/samples/.gitkeep
+
+# Datos específicos del cliente
+data.json.bak
+mensajes.json
+
+# Archivos de desarrollo
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs y caché
+logs/
+*.log
+cache/
+
+# Backups
+backups/
+*.sql
+*.bak
+
+# SSL certificates (usar volúmenes en producción)
+ssl/
+*.pem
+*.key
+*.crt
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# OS generated files
+ehthumbs.db
+Desktop.ini
+*.lnk
+
+# Archivos temporales
+*.tmp
+*.temp

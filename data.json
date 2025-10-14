@@ -1,0 +1,183 @@
+{
+    "video_banner": "uploads\/banner.mp4",
+    "secciones": [
+        {
+            "id": "sobre-nosotros",
+            "titulo": "Sobre Nosotros",
+            "tipo": "texto",
+            "bg": "#f8f9fa",
+            "border": 1,
+            "imagen": "",
+            "contenido": {
+                "html": "<div style=\"text-align: justify;\">Bienvenido a nuestro CMS Visual. Este es un sistema completo de gestión de contenidos que te permite crear y editar tu sitio web de forma visual e intuitiva. Desde el panel administrativo puedes gestionar secciones, crear colecciones de productos, subir archivos multimedia y personalizar completamente la experiencia de tus visitantes. Nuestro sistema está diseñado para ser fácil de usar, no necesitas conocimientos técnicos para crear un sitio web profesional y atractivo.<\/div>"
+            },
+            "show_in_menu": true,
+            "font": "body"
+        },
+        {
+            "id": "productos-servicios",
+            "titulo": "Productos y Servicios",
+            "tipo": "coleccion",
+            "bg": "#ffffff",
+            "border": 1,
+            "columns": [
+                {
+                    "titulo": "Servicio Premium",
+                    "imagen": "uploads\/sample-1.jpg",
+                    "resumen": "Nuestro servicio de mayor calidad y personalización.",
+                    "detalle": "Incluye consultoría personalizada, soporte 24/7 y todas las características premium de nuestro sistema."
+                },
+                {
+                    "titulo": "Servicio Estándar",
+                    "imagen": "uploads\/sample-2.jpg",
+                    "resumen": "La opción más popular entre nuestros clientes.",
+                    "detalle": "Perfecto equilibrio entre funcionalidades y precio, ideal para pequeñas y medianas empresas."
+                },
+                {
+                    "titulo": "Servicio Básico",
+                    "imagen": "uploads\/sample-3.jpg",
+                    "resumen": "Ideal para empezar tu presencia digital.",
+                    "detalle": "Todas las funcionalidades esenciales para crear y mantener tu sitio web profesional."
+                },
+                {
+                    "titulo": "Consultoría",
+                    "imagen": "uploads\/sample-4.jpg",
+                    "resumen": "Asesoramiento personalizado para tu proyecto.",
+                    "detalle": "Nuestros expertos te ayudan a planificar y ejecutar tu estrategia digital de forma efectiva."
+                }
+            ],
+            "show_in_menu": true,
+            "font": "body"
+        },
+        {
+            "id": "tecnologia",
+            "titulo": "Nuestra Tecnología",
+            "tipo": "texto",
+            "bg": "#e8f4fd",
+            "border": 1,
+            "imagen": "",
+            "contenido": {
+                "html": "<div style=\"text-align: justify;\">Utilizamos las últimas tecnologías web para crear sitios rápidos, seguros y modernos. Nuestro CMS está construido con PHP moderno, JavaScript vanilla y CSS3, garantizando compatibilidad, rendimiento y facilidad de uso. El sistema es completamente responsive y se adapta a cualquier dispositivo, desde móviles hasta pantallas de escritorio.<\/div>"
+            },
+            "show_in_menu": true,
+            "font": "body"
+        },
+        {
+            "id": "prueba-multiformato",
+            "titulo": "Prueba Multiformato",
+            "tipo": "multiformato",
+            "color_fondo": "#f0f8ff",
+            "mostrar_menu": true,
+            "bloques": [
+                {
+                    "id": "bloque_1",
+                    "tipo": "titulo",
+                    "contenido": "Título de Prueba"
+                },
+                {
+                    "id": "bloque_2",
+                    "tipo": "texto",
+                    "contenido": "Este es un párrafo de texto de prueba para verificar que el sistema multiformato funciona correctamente."
+                },
+                {
+                    "id": "bloque_3",
+                    "tipo": "lista",
+                    "contenido": [
+                        "Primer elemento",
+                        "Segundo elemento",
+                        "Tercer elemento"
+                    ]
+                }
+            ],
+            "fecha_creacion": "2025-10-12T21:40:35+00:00"
+        }
+    ],
+    "brand": {
+        "name": "Tu Empresa",
+        "logo": "uploads\/logo-sample.jpg"
+    },
+    "fonts": {
+        "body": {
+            "type": "google",
+            "family": "Inter",
+            "weights": "400,500"
+        },
+        "headings": {
+            "type": "google",
+            "family": "Poppins",
+            "weights": "600,700"
+        },
+        "signature": {
+            "type": "google",
+            "family": "Great Vibes",
+            "weights": "400"
+        },
+        "custom": []
+    },
+    "redes": [
+        {
+            "nombre": "WhatsApp",
+            "icono": "📱",
+            "url": "https:\/\/wa.me\/1234567890"
+        },
+        {
+            "nombre": "Facebook",
+            "icono": "📘",
+            "url": "https:\/\/facebook.com\/tuempresa"
+        },
+        {
+            "nombre": "Instagram",
+            "icono": "📷",
+            "url": "https:\/\/instagram.com\/tuempresa"
+        }
+    ],
+    "contacto": {
+        "titulo": "Contacto",
+        "bg": "#f8f9fa",
+        "color_texto": "#000000",
+        "contenido": "¿Tienes alguna pregunta o quieres más información? Contáctanos y te responderemos lo antes posible.",
+        "email": "contacto@tuempresa.com"
+    },
+    "form": {
+        "fields": [
+            {
+                "name": "nombre",
+                "placeholder": "Tu nombre"
+            },
+            {
+                "name": "email",
+                "placeholder": "Tu correo electrónico"
+            },
+            {
+                "name": "mensaje",
+                "placeholder": "Tu mensaje"
+            }
+        ],
+        "button_text": "Enviar mensaje",
+        "success_message": "Gracias por contactarnos. Te responderemos pronto.",
+        "colors": {
+            "bg": "#ffffff",
+            "text": "#000000",
+            "button": "#0e7ac7",
+            "border": "#cfd8e3"
+        }
+    },
+    "socials": [
+        {
+            "nombre": "WhatsApp",
+            "icono": "💬",
+            "url": "https:\/\/wa.me\/1234567890"
+        },
+        {
+            "nombre": "Email",
+            "icono": "📧",
+            "url": "mailto:contacto@tuempresa.com"
+        }
+    ],
+    "footer": {
+        "direccion": "Tu Ciudad, Tu País",
+        "telefono": "+1 (555) 123-4567",
+        "email": "contacto@tuempresa.com",
+        "texto": "© 2024 Tu Empresa. Todos los derechos reservados."
+    }
+}

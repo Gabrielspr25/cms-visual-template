@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOM Vision CMS v2.1 – Editor modular</title>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0d1117;color:#e6edf3;font-family:system-ui,Segoe UI,Roboto,Arial;height:100vh;display:flex;overflow:hidden;}
+aside{width:270px;background:#161b22;border-right:1px solid #30363d;padding:1rem;display:flex;flex-direction:column;}
+h1{text-align:center;color:#58a6ff;margin-bottom:1rem;font-size:1.1rem;}
+#sectionsList{flex:1;overflow:auto}
+.item{background:#21262d;margin:.3rem 0;padding:.6rem;border-radius:6px;border:none;color:#c9d1d9;text-align:left;cursor:pointer;}
+.item.active{background:#238636;color:#fff;}
+button.primary{background:#238636;border:none;color:#fff;padding:.7rem;border-radius:6px;cursor:pointer;font-weight:600;}
+main{flex:1;overflow:auto;padding:1rem;}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1rem;margin-bottom:1rem;}
+label{color:#9eb9d8;display:block;margin:.4rem 0;}
+input,select{background:#21262d;color:#c9d1d9;border:1px solid #30363d;border-radius:6px;padding:.5rem;width:100%;}
+#blocks{display:flex;flex-direction:column;gap:1rem;margin-top:1rem;}
+.block{background:#21262d;border:1px solid #30363d;border-radius:8px;padding:1rem;}
+.block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;}
+.block-header select{width:auto;}
+.block img, .block video{width:100%;max-width:640px;border-radius:8px;margin-top:.5rem;}
+.drag{cursor:move;color:#999;}
+.ql-toolbar.ql-snow{background:#1f2937;border:1px solid #30363d;border-bottom:none;}
+.ql-container.ql-snow{border:1px solid #30363d;background:#161b22;color:#e6edf3;min-height:200px;}
+</style>
+</head>
+<body>
+
+<aside>
+  <h1>MOM Vision CMS</h1>
+  <div id="sectionsList"></div>
+  <button class="primary" onclick="newSection()">Nueva sección</button>
+</aside>
+
+<main>
+  <div class="card">
+    <label>Nombre de sección</label>
+    <input id="secName" type="text" placeholder="Ej: Página principal, Sobre nosotros">
+    <label>Tipo</label>
+    <select id="secType">
+      <option value="modular">modular</option>
+    </select>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h3>Bloques</h3>
+      <button class="primary" onclick="addBlock()">Agregar bloque</button>
+    </div>
+    <div id="blocks"></div>
+    <div style="margin-top:10px;text-align:right;">
+      <button class="primary" onclick="saveSection()">?? Guardar sección</button>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.min.js"></script>
+<script>
+let sections=[], current=null;
+
+async function loadSections(){
+  const r=await fetch('/api/sections'); const j=await r.json();
+  sections=j.data||[]; renderList();
+}
+
+function renderList(){
+  const c=document.getElementById('sectionsList');
+  c.innerHTML='';
+  sections.forEach(s=>{
+    const b=document.createElement('button');
+    b.className='item'+(current&&current.name===s.name?' active':'');
+    b.textContent=s.name;
+    b.onclick=()=>openSection(s);
+    c.appendChild(b);
+  });
+}
+
+function newSection(){
+  current={name:'',type:'modular',content:[]};
+  document.getElementById('secName').value='';
+  document.getElementById('blocks').innerHTML='';
+}
+
+function openSection(sec){
+  current=sec;
+  document.getElementById('secName').value=sec.name;
+  const container=document.getElementById('blocks');
+  container.innerHTML='';
+  (sec.content||[]).forEach(b=>addBlock(b.type,b));
+}
+
+function addBlock(type='texto',data={}){
+  const container=document.getElementById('blocks');
+  const div=document.createElement('div');
+  div.className='block';
+  div.draggable=true;
+  div.innerHTML=`
+    <div class="block-header">
+      <select onchange="onTypeChange(this)">
+        <option value="texto"${type==='texto'?' selected':''}>texto</option>
+        <option value="imagen"${type==='imagen'?' selected':''}>imagen</option>
+        <option value="video"${type==='video'?' selected':''}>video</option>
+        <option value="columnas"${type==='columnas'?' selected':''}>columnas</option>
+      </select>
+      <span class="drag">?</span>
+      <button onclick="this.closest('.block').remove()">?</button>
+    </div>
+    <div class="block-content"></div>
+  `;
+  container.appendChild(div);
+  renderBlock(div,type,data);
+}
+
+function renderBlock(div,type,data){
+  const c=div.querySelector('.block-content');
+  c.innerHTML='';
+  if(type==='texto'){
+    const ed=document.createElement('div');
+    c.appendChild(ed);
+    const q=new Quill(ed,{theme:'snow'});
+    if(data.html) q.root.innerHTML=data.html;
+    div.quill=q;
+  }
+  if(type==='imagen'){
+    c.innerHTML=`<input type="file" accept="image/*" onchange="previewImage(this)">
+                 <img src="${data.url||''}" ${data.url?'':'style="display:none;"'}>`;
+  }
+  if(type==='video'){
+    c.innerHTML=`<input type="file" accept="video/mp4" onchange="previewVideo(this)">
+                 <video src="${data.url||''}" controls ${data.url?'':'style="display:none;"'}></video>`;
+  }
+  if(type==='columnas'){
+    c.innerHTML=`<textarea placeholder="HTML o texto de columnas" style="width:100%;min-height:150px;background:#21262d;color:#c9d1d9;border:1px solid #30363d;border-radius:6px;">${data.html||''}</textarea>`;
+  }
+}
+
+function onTypeChange(sel){
+  const div=sel.closest('.block');
+  renderBlock(div,sel.value,{});
+}
+
+function previewImage(input){
+  const file=input.files[0];
+  const img=input.nextElementSibling;
+  if(file){img.src=URL.createObjectURL(file);img.style.display='block';}
+}
+function previewVideo(input){
+  const file=input.files[0];
+  const vid=input.nextElementSibling;
+  if(file){vid.src=URL.createObjectURL(file);vid.style.display='block';}
+}
+
+async function saveSection(){
+  const name=document.getElementById('secName').value.trim();
+  if(!name) return alert('Falta nombre');
+  const blocks=[];
+  const all=document.querySelectorAll('.block');
+  for(const b of all){
+    const type=b.querySelector('select').value;
+    let content={};
+    if(type==='texto') content.html=b.quill.root.innerHTML;
+    if(type==='imagen'){
+      const file=b.querySelector('input[type=file]').files[0];
+      const img=b.querySelector('img');
+      if(file){
+        const fd=new FormData(); fd.append('file',file);
+        const up=await fetch('/api/upload',{method:'POST',body:fd});
+        const j=await up.json(); if(j.success) content.url=j.url;
+      } else if(img.src) content.url=img.src;
+    }
+    if(type==='video'){
+      const file=b.querySelector('input[type=file]').files[0];
+      const vid=b.querySelector('video');
+      if(file){
+        const fd=new FormData(); fd.append('file',file);
+        const up=await fetch('/api/upload',{method:'POST',body:fd});
+        const j=await up.json(); if(j.success) content.url=j.url;
+      } else if(vid.src) content.url=vid.src;
+    }
+    if(type==='columnas'){
+      const ta=b.querySelector('textarea'); content.html=ta.value;
+    }
+    blocks.push({type,content});
+  }
+  const payload={name,type:'modular',content:blocks};
+  const r=await fetch('/api/sections',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const j=await r.json();
+  if(j.success){alert('Guardado');await loadSections();}
+  else alert('Error guardando');
+}
+
+loadSections();
+</script>
+</body>
+</html>
